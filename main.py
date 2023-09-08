@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from pymongo import MongoClient
-from routers.economics_router import router as economics_router
-from routers.event_router import router as event_router
-from routers.holiday_router import router as holiday_router
+# from routers.economics_router import router as economics_router
+# from routers.event_router import router as event_router
+# from routers.holiday_router import router as holiday_router
 from fastapi import Request
 from pathlib import Path
 import os
 #部署到render时,需要注释该行
-# load_dotenv(Path(Path.home(),"env_config/.env_jinshidata_api"),override=True)
+load_dotenv(Path(Path.home(),"env_config/.env_jinshidata_api"),override=True)
 
 app = FastAPI()
 
