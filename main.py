@@ -4,14 +4,10 @@ from pymongo import MongoClient
 from routers.economics_router import router as economics_router
 from routers.event_router import router as event_router
 from routers.holiday_router import router as holiday_router
-
 from fastapi import Request
-app = FastAPI()
-
-
 
 config = dotenv_values(".env")
-
+app = FastAPI()
 
 @app.on_event("startup")
 def startup_db_client():
@@ -29,7 +25,7 @@ def aa(request:Request):
   # data = MongoClient(config['MONGO_URI'])["scrapy_test_db"]
   data = request.app.database
 
-  r = data["scrapy_items_Economics"].find({})
+  r = data["scrapy_items_Economics"].find().limit(10)
   return [e for e in r]
   
 
