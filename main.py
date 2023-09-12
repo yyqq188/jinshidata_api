@@ -7,10 +7,9 @@ from routers.holiday_router import router as holiday_router
 from fastapi import Request
 from pathlib import Path
 import os
-from typing  import List
-from models import Economics,Event,Holiday
+from fastapi.responses import HTMLResponse
 #部署到render时,需要注释该行
-# load_dotenv(Path(Path.home(),"env_config",".env_jinshidata_api"),override=True)
+load_dotenv(Path(Path.home(),"env_config",".env_jinshidata_api"),override=True)
 
 app = FastAPI()
 
@@ -25,10 +24,26 @@ def shutdown_db_client():
   app.mongodb_client.close()
 
 
-# @app.get("/")
-# def aa(request:Request):
-#   r = request.app.database["scrapy_items_Economics"].find(limit=10)
-#   return [e for e in r]
+@app.get("/",response_class=HTMLResponse)
+def home(request:Request):
+  return """
+<html>
+        <body align="center">
+            <h1>使用方法:</h1>
+            <h2>1.经济信息:</h2>
+            <p>https://jinshidata-api.onrender.com/economics/{year}/{month}/{day}/[?limit=10]</p>
+            <h2>2.事件信息:</h2>
+            <p>https://jinshidata-api.onrender.com/event/{year}/{month}/{day}/[?limit=10]</p>
+            <h2>3.假期信息:</h2>
+            <p>https://jinshidata-api.onrender.com/holiday/{year}/{month}/{day}/[?limit=10]</p>
+            <h3>ps : limit是可选的,缺省的话,会将该天的所有信息返回 </h3>
+            <h3>例如:</h3>
+            <p>https://jinshidata-api.onrender.com/economics/2023/09/04/?limit=10</p>
+            <p>https://jinshidata-api.onrender.com/economics/2023/09/04</p>
+        </body>
+</html>
+
+"""
  
 
 app.include_router(economics_router,tags=["economics"],prefix="/economics")
