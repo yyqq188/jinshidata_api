@@ -29,15 +29,15 @@ def home(request:Request):
   return """
 <html>
         <body align="center">
-            <h1>使用方法:</h1>
-            <h2>1.经济信息:</h2>
+            <h1>使用方法</h1>
+            <h2>1.经济信息</h2>
             <p>https://jinshidata-api.onrender.com/economics/{year}/{month}/{day}/[?limit=10]</p>
-            <h2>2.事件信息:</h2>
+            <h2>2.事件信息</h2>
             <p>https://jinshidata-api.onrender.com/event/{year}/{month}/{day}/[?limit=10]</p>
-            <h2>3.假期信息:</h2>
+            <h2>3.假期信息</h2>
             <p>https://jinshidata-api.onrender.com/holiday/{year}/{month}/{day}/[?limit=10]</p>
             <h3>ps : limit是可选的,缺省的话,会将该天的所有信息返回 </h3>
-            <h3>例如:</h3>
+            <h3>例如</h3>
             <p>https://jinshidata-api.onrender.com/economics/2023/09/04/?limit=10</p>
             <p>https://jinshidata-api.onrender.com/economics/2023/09/04</p>
         </body>
