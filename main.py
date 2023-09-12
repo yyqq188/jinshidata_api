@@ -7,8 +7,10 @@ from routers.holiday_router import router as holiday_router
 from fastapi import Request
 from pathlib import Path
 import os
+from typing  import List
+from models import Economics,Event,Holiday
 #部署到render时,需要注释该行
-load_dotenv(Path(Path.home(),"env_config/.env_jinshidata_api"),override=True)
+# load_dotenv(Path(Path.home(),"env_config",".env_jinshidata_api"),override=True)
 
 app = FastAPI()
 
@@ -25,13 +27,9 @@ def shutdown_db_client():
 
 # @app.get("/")
 # def aa(request:Request):
-#   # data = MongoClient(config['MONGO_URI'])["scrapy_test_db"]
-#   data = request.app.database
-
-#   r = data["scrapy_items_Economics"].find().limit(10)
+#   r = request.app.database["scrapy_items_Economics"].find(limit=10)
 #   return [e for e in r]
-  
-
+ 
 
 app.include_router(economics_router,tags=["economics"],prefix="/economics")
 app.include_router(event_router,tags=["event"],prefix="/event")
