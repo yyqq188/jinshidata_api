@@ -40,6 +40,10 @@ def home(request:Request):
             <h3>例如</h3>
             <p>https://jinshidata-api.onrender.com/economics/2023/09/04/?limit=10</p>
             <p>https://jinshidata-api.onrender.com/economics/2023/09/04</p>
+            
+            
+            <h3>目前爬取了并开放了2015年至今的信息</h3>
+            <p>后续会逐步扩充API数据,建议收藏</p>
         </body>
 </html>
 
