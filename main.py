@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from routers.economics_router import router as economics_router
@@ -11,7 +12,19 @@ from fastapi.responses import HTMLResponse
 #部署到render时,需要注释该行
 load_dotenv(Path(Path.home(),"env_config",".env_jinshidata_api"),override=True)
 
-app = FastAPI()
+
+app = FastAPI(
+	title='jinshidata_api ',
+	description='jinshidata_api',
+	version='1.0.0'
+)
+app.add_middleware(
+	CORSMiddleware,
+	allow_origins=["*"],
+	allow_credentials=False,
+	allow_methods=["*"],
+	allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup_db_client():
